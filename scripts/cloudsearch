@@ -1,0 +1,18 @@
+#!/bin/bash
+
+accountid=$(aws sts get-caller-identity --query "Account" --output text)
+bucketname="${accountid}-terraform-state"
+TFTMPFILE=$(mktemp /tmp/tfs.XXXXXX)
+echo "State-Bucket: $bucketname"
+
+aws s3 cp --quiet "s3://${bucketname}/ono-platform/terraform.tfstate" "$TFTMPFILE"
+
+jq_prev='.resources[] | select( "\(.module).\(.type).\(.name)" == "{}") | { name, type, instances }'
+
+resource=$(
+  jq -r '.resources[] | "\(.module).\(.type).\(.name)"' "$TFTMPFILE" |
+  fzf --preview "jq -C '$jq_prev' "$TFTMPFILE""
+)
+
+rm "$TFTMPFILE"
+

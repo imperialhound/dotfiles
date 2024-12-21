@@ -1,0 +1,2 @@
+#!/bin/bash
+sops -d -i --age $SOPS_AGE_KEY_FILE $@

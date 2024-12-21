@@ -1,0 +1,11 @@
+#!/bin/bash
+dns="tailae5e.ts.net"
+
+hostname=$(tailscale status --json | jq '.Peer | map(.HostName) | unique' | grep "operator" | tr -d '",' | fzf)
+fulldns="$hostname.$dns"
+
+tailscale configure kubeconfig $hostname
+
+kubectl config use-context $fulldns
+
+echo "Set context for $hostname"

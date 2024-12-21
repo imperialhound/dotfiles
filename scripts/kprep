@@ -1,0 +1,15 @@
+#!/bin/bash
+if [ $(aws eks list-clusters | jq ".clusters | length") -gt 0 ]
+then
+
+    if [ $(aws eks list-clusters | jq ".clusters | length") -eq 1  ]
+    then
+        cluster=$(aws eks list-clusters | jq --raw-output ".clusters[0]")
+    else
+        cluster=$(aws eks list-clusters | jq --raw-output ".clusters[]" | fzf --reverse)
+    fi
+
+aws eks update-kubeconfig --name $cluster --alias $cluster
+
+fi
+

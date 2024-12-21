@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e
+
+# Search for passwords using the search term
+bw sync 
+
+logins="$(bw list items --search $1)"
+
+name="$(printf "%s" "$logins" | jq -r ".[].name" | fzf --reverse)"
+
+login="$(echo "$logins" | jq ".[] | select(.name == \"$name\")" | jq -r ".login.password")"
+
+# Copy Password
+echo "$login" | xclip -selection c

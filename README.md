@@ -1,2 +1,2 @@
 # dotfiles
-My dotfile for macos and arch 
+My dotfiles for macos and arch 
