@@ -11,6 +11,8 @@ vim.opt.wrap = true
 -- Preserve indentation of virtual line
 vim.opt.breakindent = true
 
+vim.opt.hidden = true
+
 -- Keep lines below cursor when scrolling
 vim.opt.scrolloff = 2
 vim.opt.sidescrolloff = 5
@@ -48,4 +50,4 @@ vim.opt.errorformat:append('%f:%l:%c%p%m')
 vim.opt.showmode = false
 
 -- Automatically set auto
-vim.opt.relativenumber = false
+vim.opt.relativenumber = true

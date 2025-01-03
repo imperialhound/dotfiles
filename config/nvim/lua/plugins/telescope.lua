@@ -1,13 +1,14 @@
 -- Fuzzy Finder
-local Plugin = {'nvim-telescope/telescope.nvim'}
+local Plugin = { 'nvim-telescope/telescope.nvim' }
 local user = {}
 
 Plugin.dependencies = {
-  {'nvim-lua/plenary.nvim'},
+  { 'nvim-lua/plenary.nvim' },
   {
     'nvim-telescope/telescope-fzy-native.nvim',
     build = function() user.build_fzy() end
-  }
+  },
+  { "folke/todo-comments.nvim" }
 }
 
 Plugin.cmd = 'Telescope'
@@ -44,9 +45,12 @@ function Plugin.init()
   bind('n', '<leader>fgb', '<cmd>Telescope git_branches<cr>')
 
   bind('n', '<leader>fgs', '<cmd>Telescoe git_status<cr>')
-  
+
   -- Telescope for LSP
   bind('n', '<leader>fd', '<cmd>Telescope diagnostics<cr>')
+
+  -- Telescope for TODOs
+  bind('n', '<leader>ft', '<cmd>TodoTelescope<cr>')
 end
 
 function Plugin.config()
@@ -54,10 +58,11 @@ function Plugin.config()
 
   local telescope = require('telescope')
   local actions = require('telescope.actions')
+  require('todo-comments').setup({})
 
   command('TGrep', function(input)
-    require('telescope.builtin').grep_string({search = input.args})
-  end, {nargs = 1})
+    require('telescope.builtin').grep_string({ search = input.args })
+  end, { nargs = 1 })
 
   local function defaults(title)
     return {
@@ -140,7 +145,7 @@ function user.build_fzy()
     return
   end
 
-  vim.fn.jobstart({'make'}, {
+  vim.fn.jobstart({ 'make' }, {
     cwd = workdir[1],
     on_stdout = user.job_output,
   })
