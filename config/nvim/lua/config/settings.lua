@@ -51,3 +51,5 @@ vim.opt.showmode = false
 
 -- Automatically set auto
 vim.opt.relativenumber = true
+
+vim.opt.conceallevel = 1

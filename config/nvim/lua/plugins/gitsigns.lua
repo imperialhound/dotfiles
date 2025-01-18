@@ -1,4 +1,4 @@
-local Plugin = {"lewis6991/gitsigns.nvim"}
+local Plugin = { "lewis6991/gitsigns.nvim" }
 
 Plugin.opts = {
   signcolumn = true,
