@@ -11,11 +11,19 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- resize splits if window got resized
-vim.api.nvim_create_autocmd({ "VimResized" }, {
+vim.api.nvim_create_autocmd("VimResized", {
   group = augroup("resize_splits"),
   callback = function()
     local current_tab = vim.fn.tabpagenr()
     vim.cmd("tabdo wincmd =")
     vim.cmd("tabnext " .. current_tab)
+  end,
+})
+
+-- Remove empty line at end of file
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = augroup("remove_empty"),
+  callback = function()
+    vim.cmd([[silent! %s#\($\n\s*\)\+\%$##]])
   end,
 })
