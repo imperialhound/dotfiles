@@ -8,7 +8,7 @@ alias mkd="mkdir -pv"
 alias bws="bw-search"
 alias k="kubectl"
 alias v="nvim"
-alias ls="exa"
+alias ls="eza"
 alias pdf="atril"
 
 # Colors
