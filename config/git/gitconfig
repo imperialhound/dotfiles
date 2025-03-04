@@ -1,12 +1,12 @@
 # This is Git's per-user configuration file.
 [user]
 # Please adapt and uncomment the following lines:
-	name = imperialhound
+  name = imperialhound
   email =  david-dppedersen@proton.me
 [core]
   editor = nvim
 [push]
-	autoSetupRemote = true
+  autoSetupRemote = true
 [alias]
   update = "!f() { git fetch origin  && git rebase origin/master; }; f"
   save = !git add -A && git commit -m 'chore: commit save point'
@@ -21,4 +21,4 @@
   cn = commit -m
   unstage= reset HEAD --
   discard = reset HEAD --hard
-	last = log -1 HEAD
+  last = log -1 HEAD
