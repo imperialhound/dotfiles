@@ -10,6 +10,7 @@ alias k="kubectl"
 alias v="nvim"
 alias ls="eza"
 alias pdf="atril"
+alias g="git"
 
 # Colors
 # alias ls="ls -hN --color=auto --group-directories-first"
