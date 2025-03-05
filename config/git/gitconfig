@@ -21,3 +21,4 @@
   unstage= reset HEAD --
   discard = reset HEAD --hard
 	last = log -1 HEAD
+  d = diff HEAD
