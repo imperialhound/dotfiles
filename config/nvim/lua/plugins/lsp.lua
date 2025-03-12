@@ -101,7 +101,7 @@ function Plugin.config()
     automatic_installation = true,
     ensure_installed = {
       "terraformls",
-      "gopls", "golangci_lint_ls", "templ",
+      "gopls", "golangci_lint_ls",
       "pyright",
       "yamlls",
       "lua_ls",
@@ -148,18 +148,19 @@ function Plugin.config()
       ['<C-e>'] = cmp.mapping.abort(),
       ['<C-u>'] = cmp.mapping.scroll_docs(-4),
       ['<C-d>'] = cmp.mapping.scroll_docs(4),
-      ["<C-Space>"] = cmp.mapping.complete(),
-      ['<Tab>'] = cmp.mapping(function(fallback)
-        local col = vim.fn.col('.') - 1
+      ["<C-Space>"] = cmp.mapping.complete()
+      -- Turned off for now because I am using co-pilot
+      -- ['<Tab>'] = cmp.mapping(function(fallback)
+      --   local col = vim.fn.col('.') - 1
 
-        if cmp.visible() then
-          cmp.select_next_item(cmp_select)
-        elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-          fallback()
-        else
-          cmp.complete()
-        end
-      end, { 'i', 's' }),
+      --   if cmp.visible() then
+      --     cmp.select_next_item(cmp_select)
+      --   elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+      --     fallback()
+      --   else
+      --     cmp.complete()
+      --   end
+      -- end, { 'i', 's' }),
     }),
     -- Data sources nvim-cmp will use to populate the completion list
     sources = cmp.config.sources({
